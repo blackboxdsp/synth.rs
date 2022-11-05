@@ -1,2 +1,2 @@
-# oto.rs
-Oto is an audio development tool and library for DSP written in Rust 🦀
+# `synth.rs`
+`synth.rs` is an audio development tool and library written in Rust 🦀.
