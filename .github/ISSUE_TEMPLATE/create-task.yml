@@ -1,0 +1,29 @@
+---
+name: '🛠️ Task'
+description: Create a new work task for the library
+title: '🛠️ '
+
+body:
+  - type: markdown
+    attributes:
+      value: '## Creating a Task'
+  - type: markdown
+    attributes:
+      value: |
+        This form should be used by library maintainers and developers only to create new work tasks.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is this task about? What is its purpose?
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements
+      description: What are the requirements for this task?
+    validations:
+      required: true

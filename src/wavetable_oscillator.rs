@@ -1,7 +1,7 @@
-use std::time::{Duration};
-use rodio::{Source};
+use rodio::Source;
+use std::time::Duration;
 
-use crate::{audio::{AudioUnit, Buffer}};
+use crate::audio::{AudioUnit, Buffer};
 
 pub struct WavetableOscillator {
     sample_rate: u32,
@@ -30,7 +30,7 @@ impl WavetableOscillator {
         self.index += self.increment;
         self.index %= self.wave_table.len() as f32;
 
-        return sample
+        return sample;
     }
 
     fn lerp(&self) -> AudioUnit {
@@ -40,7 +40,8 @@ impl WavetableOscillator {
         let next_index_weight = self.index - truncated_index as f32;
         let truncated_index_weight = 1.0 - next_index_weight;
 
-        return truncated_index_weight * self.wave_table[truncated_index] + next_index_weight * self.wave_table[next_index];
+        return truncated_index_weight * self.wave_table[truncated_index]
+            + next_index_weight * self.wave_table[next_index];
     }
 }
 

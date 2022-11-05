@@ -1,10 +1,10 @@
 mod audio;
 mod wavetable_oscillator;
 
-use std::time::Duration;
 use rodio::{OutputStream, Source};
+use std::time::Duration;
 
-use crate::{audio::{Buffer}, wavetable_oscillator::{WavetableOscillator}};
+use crate::{audio::Buffer, wavetable_oscillator::WavetableOscillator};
 
 const PROGRAM_DURATION: u64 = 1;
 
@@ -23,6 +23,6 @@ fn main() {
 
     let (stream, stream_handle) = OutputStream::try_default().unwrap();
     let result = stream_handle.play_raw(oscillator.convert_samples());
-    
+
     std::thread::sleep(Duration::from_secs(PROGRAM_DURATION));
 }
