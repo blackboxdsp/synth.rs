@@ -9,7 +9,7 @@ use crate::generators::wavetable_oscillator::Waveform;
 
 const PROGRAM_DURATION: u64 = 1;
 const SAMPLE_RATE: u32 = 44100;
-const WAVETABLE_SIZE: usize = 128;
+const WAVETABLE_SIZE: usize = 2048;
 const OSCILLATOR_FREQUENCY: f32 = 220.0;
 
 fn main() {

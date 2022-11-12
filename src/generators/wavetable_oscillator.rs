@@ -33,7 +33,7 @@ impl WavetableOscillator {
 
     fn generate_sine_wavetable(buffer: &mut Buffer, wavetable_size: usize) {
         for n in 0..wavetable_size {
-            let phase = (n as f32 / wavetable_size as f32) * std::f32::consts::PI * 2.0;
+            let phase = (n as AudioUnit / wavetable_size as AudioUnit) * std::f32::consts::PI * 2.0;
             buffer.push(phase.sin());
         }
     }
@@ -54,8 +54,8 @@ impl WavetableOscillator {
 
     fn generate_sawtooth_wavetable(buffer: &mut Buffer, wavetable_size: usize) {
         for n in 0..wavetable_size {
-            let (m, b) = (1.0 / wavetable_size as f32, 0.0);
-            let value = m * n as f32 + b;
+            let (m, b) = (1.0 / wavetable_size as AudioUnit, 0.0);
+            let value = m * n as AudioUnit + b;
             buffer.push((value * 2.0) - 1.0);
         }
     }
@@ -64,11 +64,11 @@ impl WavetableOscillator {
         for n in 0..wavetable_size {
             let half_size = wavetable_size / 2;
             let (m, b) = if n <= half_size {
-                (1.0 / half_size as f32, 0.0)
+                (1.0 / half_size as AudioUnit, 0.0)
             } else {
-                (-1.0 / half_size as f32, 2.0)
+                (-1.0 / half_size as AudioUnit, 2.0)
             };
-            let value = m * n as f32 + b;
+            let value = m * n as AudioUnit + b;
             buffer.push((value * 2.0) - 1.0)
         }
     }
