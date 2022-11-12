@@ -3,7 +3,6 @@ name: '🐞 Bug Report'
 description: Fill in a bug report to help improve the library
 title: '🐞 '
 labels: 'bug-report'
----
 
 body:
   - type: markdown
