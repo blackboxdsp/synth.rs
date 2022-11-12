@@ -1,5 +1,6 @@
-use rodio::Source;
 use std::time::Duration;
+
+use rodio::Source;
 
 use crate::audio::{AudioUnit, Buffer};
 
