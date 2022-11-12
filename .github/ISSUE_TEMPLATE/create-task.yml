@@ -2,6 +2,7 @@
 name: '🛠️ Task'
 description: Create a new work task for the library
 title: '🛠️ '
+---
 
 body:
   - type: markdown
