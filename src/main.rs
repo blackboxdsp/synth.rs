@@ -1,28 +1,27 @@
-mod audio;
-mod wavetable_oscillator;
+pub mod audio;
+pub mod generators;
 
 use rodio::{OutputStream, Source};
 use std::time::Duration;
 
-use crate::{audio::Buffer, wavetable_oscillator::WavetableOscillator};
+use crate::{generators::wavetable_oscillator::WavetableOscillator};
+use crate::generators::wavetable_oscillator::Waveform;
 
 const PROGRAM_DURATION: u64 = 1;
+const SAMPLE_RATE: u32 = 44100;
+const WAVETABLE_SIZE: usize = 128;
+const OSCILLATOR_FREQUENCY: f32 = 220.0;
 
 fn main() {
-    println!("Hello, world!");
+    let mut oscillator = WavetableOscillator::new(
+        SAMPLE_RATE,
+        WAVETABLE_SIZE,
+        Waveform::Sawtooth,
+    );
+    oscillator.set_frequency(OSCILLATOR_FREQUENCY);
 
-    let wave_table_size = 64;
-    let mut wave_table: Buffer = Vec::with_capacity(wave_table_size);
-
-    for n in 0..wave_table_size {
-        wave_table.push((2.0 * std::f32::consts::PI * n as f32 / wave_table_size as f32).sin());
-    }
-
-    let mut oscillator = WavetableOscillator::new(44100, wave_table);
-    oscillator.set_frequency(440.0);
-
-    let (stream, stream_handle) = OutputStream::try_default().unwrap();
-    let result = stream_handle.play_raw(oscillator.convert_samples());
+    let (_stream, stream_handle) = OutputStream::try_default().unwrap();
+    let _result = stream_handle.play_raw(oscillator.convert_samples());
 
     std::thread::sleep(Duration::from_secs(PROGRAM_DURATION));
 }
